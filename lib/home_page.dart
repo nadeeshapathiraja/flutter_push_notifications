@@ -1,6 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:push_notifications/notification.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,6 +12,22 @@ class _HomePageState extends State<HomePage> {
   String notificationTitle = "No Title";
   String notificationBody = "No Body";
   String notificationData = "No Data";
+
+  @override
+  void initState() {
+    final firebasemessging = FCM();
+    firebasemessging.setNotifications();
+
+    firebasemessging.streamCtrl.stream.listen(_changeData);
+    firebasemessging.titleCtrl.stream.listen(_changeTitle);
+    firebasemessging.bodyCtrl.stream.listen(_changeBody);
+
+    super.initState();
+  }
+
+  _changeData(String msg) => setState(() => notificationData = msg);
+  _changeTitle(String msg) => setState(() => notificationTitle = msg);
+  _changeBody(String msg) => setState(() => notificationBody = msg);
 
   @override
   Widget build(BuildContext context) {
