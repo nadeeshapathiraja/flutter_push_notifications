@@ -10,6 +10,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String notificationTitle = "No Title";
+  String notificationBody = "No Body";
+  String notificationData = "No Data";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +22,33 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Flutter Notification Details"),
+            const Text(
+              "Flutter Notification Details",
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: 25,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Notification DetailTitle: $notificationTitle",
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Notification Body $notificationBody",
+              style: const TextStyle(
+                color: Colors.black87,
+                fontSize: 10,
+              ),
+            ),
           ],
         ),
       ),
